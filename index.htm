@@ -142,6 +142,9 @@
           frets[i][j].addEventListener("mousedown",mDownFret);
           frets[i][j].addEventListener("mouseup",mUpFret);
           frets[i][j].addEventListener("mouseleave",mLeaveFret);
+          frets[i][j].addEventListener("touchstart",mDownFret);
+          frets[i][j].addEventListener("touchend",mUpFret);
+          frets[i][j].addEventListener("touchcancel",mLeaveFret);
         }
       }
 
