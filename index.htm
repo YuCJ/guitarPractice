@@ -105,27 +105,60 @@
         }
       };
       //填入音符：開放把位C大調音階
-      // var pOpenC = [
-      //   ["E", "A", "D", "G", "B", "E"],
-      //   ["F", " ", " ", "A", "C", "F"],
-      //   [" ", "B", "E", " ", " ", " "],
-      //   ["G", "C", "F", " ", "D", "G"]
-      // ];
-      // insertPitchName(pOpenC);
+      var pOpenC = [
+        ["E", "A", "D", "G", "B", "E"],
+        ["F", " ", " ", " ", "C", "F"],
+        [" ", "B", "E", "A", " ", " "],
+        ["G", "C", "F", " ", "D", "G"]
+      ];
+      insertPitchName(pOpenC);
 
       //填入音符：開放把位C大調音階（簡譜）
-      var numOpenC = [
-        ["3", "6", "2", "5", "7", "3"],
-        ["4", " ", " ", "6", "1", "4"],
-        [" ", "7", "3", " ", " ", " "],
-        ["5", "1", "4", " ", "2", "5"]
-      ];
-      insertPitchName(numOpenC);
+      // var numOpenC = [
+      //   ["3", "6", "2", "5", "7", "3"],
+      //   ["4", " ", " ", " ", "1", "4"],
+      //   [" ", "7", "3", "6", " ", " "],
+      //   ["5", "1", "4", " ", "2", "5"]
+      // ];
+      // insertPitchName(numOpenC);
+
+
+      //聲音
+
+      var soundNames = [
+       ["E2", "F2", "  ", "G2"],
+       ["A2", "  ", "B2", "C3"],
+       ["D3", "  ", "E3", "F3"],
+       ["G3", "  ", "A3", "  "],
+       ["B3", "C4", "  ", "D4"],
+       ["E4", "F4", "  ", "G4"]];
+
+       var soundPlay = function (soundSrc){
+        var html5audio = document.createElement('audio');
+        var sourceel = document.createElement('source');
+        sourceel.setAttribute('src', soundSrc);
+        sourceel.setAttribute('type', "audio/mpeg");
+        html5audio.appendChild(sourceel);
+        html5audio.load();
+        html5audio.playclip = function(){
+            html5audio.pause();
+            html5audio.currentTime=0;
+            html5audio.play();
+        };
+         return html5audio;
+       };
+
 
       //監聽點擊事件
       var mDownFret = function(){
         console.log("MouseDown: "+this.textContent);
         this.children[0].style.backgroundColor = "red";
+        console.log(Number(this.id.charAt(4))-1);
+        console.log(Number(this.id.charAt(6)));
+        var soundName = soundNames[Number(this.id.charAt(4))-1][Number(this.id.charAt(6))];
+        var soundSrc = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_guitar_steel-mp3/"+soundName+".mp3";
+        var clickSound = soundPlay(soundSrc);
+        clickSound.playclip(soundSrc);
       };
       var mUpFret = function(){
         console.log("MouseUp: "+this.textContent);
