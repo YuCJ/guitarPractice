@@ -133,6 +133,8 @@
        ["B3", "C4", "  ", "D4"],
        ["E4", "F4", "  ", "G4"]];
 
+
+
        var soundPlay = function (soundSrc){
         var html5audio = document.createElement('audio');
         var sourceel = document.createElement('source');
@@ -156,7 +158,7 @@
         console.log(Number(this.id.charAt(4))-1);
         console.log(Number(this.id.charAt(6)));
         var soundName = soundNames[Number(this.id.charAt(4))-1][Number(this.id.charAt(6))];
-        var soundSrc = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_guitar_steel-mp3/"+soundName+".mp3";
+        var soundSrc = "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_guitar_steel-mp3/"+soundName+".mp3";
         var clickSound = soundPlay(soundSrc);
         clickSound.playclip(soundSrc);
       };
